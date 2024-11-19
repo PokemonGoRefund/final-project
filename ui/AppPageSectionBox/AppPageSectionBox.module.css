@@ -1,0 +1,16 @@
+.AppBox {
+    background-color: var(--mantine-color-white);
+    /*background-color: var(--mantine-primary-color-0);*/
+    /*color: var(--mantine-color-white);*/
+    /*border: rem(1px) solid var(--mantine-color-blue-7);*/
+    /*border: rem(1px) solid #919EAB;*/
+    border-radius: var(--mantine-radius-lg);
+    /*padding: var(--mantine-spacing-sm);*/
+    /*margin-bottom: var(--mantine-spacing-xs);*/
+    /*display: flex;*/
+
+    @mixin hover {
+        box-shadow: var(--mantine-shadow-xs);
+        /*transform: scale(1.01);*/
+    }
+}
