@@ -22,9 +22,9 @@ const UserManage: FC = () => {
     if (!(session?.user.role === 'admin')) redirect('/');
 
     return (
-        <Stack mt={'lg'}>
+        <Stack pt={'xl'}>
             <AppPageSectionBox>
-                <AppPageHeader title={'History'} />
+                <AppPageHeader title={'User management'} />
             </AppPageSectionBox>
             <AppPageSectionBox p={'lg'}>
                 <UserListTable />

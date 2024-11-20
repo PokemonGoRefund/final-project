@@ -22,7 +22,7 @@ const Notification: FC = () => {
     if (!(session?.user.role === 'admin')) redirect('/');
 
     return (
-        <Stack mt={'lg'}>
+        <Stack pt={'xl'}>
             <AppPageSectionBox>
                 <AppPageHeader title={'Notification'} />
             </AppPageSectionBox>

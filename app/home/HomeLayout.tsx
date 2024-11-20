@@ -4,6 +4,7 @@ import { ReactNode, useState } from 'react';
 import NextImage from 'next/image';
 import { Group, Code, AppShell, Burger, Image, ScrollArea, Button, Divider, AspectRatio, Text, Stack } from '@mantine/core';
 import {
+    IconProps,
     IconBellRinging,
     IconFingerprint,
     IconKey,
@@ -18,7 +19,8 @@ import {
     IconUser,
     IconUserCode,
     IconCreditCard,
-    IconCategory
+    IconCategory,
+    IconHeartHandshake
 } from '@tabler/icons-react';
 // import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './HomeLayout.module.css';
@@ -26,6 +28,14 @@ import { FC } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import AppPageContainer from '@/ui/AppPageContainer/AppPageContainer';
+
+type NavLink = {
+    label: string;
+    link?: string; // Optional for dropdowns
+    icon: FC<IconProps>; // Tabler icons are functional components
+    links?: { label: string; link: string }[]; // For dropdowns
+};
 
 const dataAdmin = [
     { link: '/home/admins/overview', label: 'Overview', icon: IconDashboard },
@@ -50,6 +60,25 @@ const dataUser = [
     { link: '/home/users/cart', label: 'Cart', icon: IconShoppingCart },
 ];
 
+// const dataUser: NavLink[] = [
+//     { link: '/home/users/category', label: 'Category', icon: IconCategory },
+//     { link: '/home/users/history', label: 'History', icon: IconHistory },
+//     { link: '/home/users/purchase', label: 'Purchase', icon: IconCreditCard },
+//     { link: '/home/users/cart', label: 'Cart', icon: IconShoppingCart },
+//     {
+//       label: 'Support',
+//       icon: IconHeartHandshake,
+//       links: [
+//         { label: 'How to order', link: '/' },
+//         { label: 'Contact us', link: '/' },
+//         { label: 'Shipping', link: '/' },
+//         { label: 'Quotation', link: '/' },
+//         { label: 'About us', link: '/' },
+//         { label: 'Account', link: '/' },
+//       ],
+//     },
+//   ];
+
 export type HomeNavbarProps = { children?: ReactNode };
 
 const HomeNavbar: FC<HomeNavbarProps> = ({ children }) => {
@@ -64,8 +93,8 @@ const HomeNavbar: FC<HomeNavbarProps> = ({ children }) => {
         session?.user.role === 'admin'
             ? dataAdmin
             : session?.user.role === 'sale'
-            ? dataSale
-            : dataUser;
+                ? dataSale
+                : dataUser;
 
     const renderedLinks = links.map((item) => (
         <a
@@ -120,7 +149,7 @@ const HomeNavbar: FC<HomeNavbarProps> = ({ children }) => {
                 breakpoint: 'md',
                 collapsed: { mobile: !opened },
             }}
-            padding="md"
+            // padding="md"
             bg={'#F9FAFB'}
         >
             <AppShell.Header hiddenFrom={'md'}>
@@ -196,8 +225,10 @@ const HomeNavbar: FC<HomeNavbarProps> = ({ children }) => {
 
             </AppShell.Navbar>
 
-            <AppShell.Main>
-                {children}
+            <AppShell.Main p={0}>
+                <AppPageContainer>
+                    {children}
+                </AppPageContainer>
             </AppShell.Main>
         </AppShell>
     );

@@ -32,7 +32,7 @@ const ItemCart: FC = () => {
                 <Box>
                     <Center>
                         <Text fw={600}>
-                            Total: xx
+                            Total: 20
                         </Text>
                     </Center>
                 </Box>
@@ -48,9 +48,9 @@ const History: FC = () => {
     if (!(session?.user.role === 'user')) redirect('/');
 
     return (
-        <Stack mt={'lg'}>
+        <Stack pt={'xl'}>
             <AppPageSectionBox>
-                <AppPageHeader title={'Order History'} />
+                <AppPageHeader title={'Order history'} />
             </AppPageSectionBox>
             <AppPageSectionBox p={'lg'}>
                 <Group justify='flex-end'>
@@ -62,11 +62,24 @@ const History: FC = () => {
                 </Group>
                 <Group justify='space-between' mt={'lg'}>
                     <Box>
-                        <Text>Order Number : xxxxxx</Text>
-                        <Text>Seller name : xxxxxx</Text>
+                        <Group>
+                            <Text fw={600}>Order Number :</Text>
+                            <Text>xxxxxx</Text>
+                        </Group>
+                        <Group>
+                            <Text fw={600}>Seller name :</Text>
+                            <Text>xxxxxx</Text>
+                        </Group>
                     </Box>
                     <Group>
-                        <Text>Order Total: xx</Text>
+                        <Group>
+                            <Text fw={600}>
+                                Order Total:
+                            </Text>
+                            <Text>
+                                xx
+                            </Text>
+                        </Group>
                         <Button>
                             <Text>
                                 Buy Again

@@ -22,7 +22,7 @@ const History: FC = () => {
     if (!(session?.user.role === 'sale')) redirect('/');
 
     return (
-        <Stack mt={'lg'}>
+        <Stack pt={'xl'}>
             <AppPageSectionBox>
                 <AppPageHeader title={'History'} />
             </AppPageSectionBox>

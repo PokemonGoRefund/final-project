@@ -32,10 +32,10 @@ const CheakProduct: FC = () => {
         <Table>
             <Table.Thead>
                 <Table.Tr>
-                    <Table.Th>No.</Table.Th>
-                    <Table.Th>Product name</Table.Th>
-                    <Table.Th>Quantity</Table.Th>
-                    <Table.Th>Price</Table.Th>
+                    <Table.Th><Text fw={600}>No</Text></Table.Th>
+                    <Table.Th><Text fw={600}>Product name</Text></Table.Th>
+                    <Table.Th><Text fw={600}>Quantity</Text></Table.Th>
+                    <Table.Th><Text fw={600}>Price</Text></Table.Th>
                 </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows}</Table.Tbody>
@@ -49,16 +49,16 @@ const CheakTimeLine: FC = () => {
             <Timeline.Item>
                 <Text fw={800}>Fill out Personal information.</Text>
                 <Space h={'lg'} />
-                <Grid>
-                    <GridCol span={2}>
+                <Grid mx={'xl'}>
+                    <GridCol span={1}>
                         <Stack gap={'28px'}>
-                            <Text>Name</Text>
-                            <Text>Company</Text>
-                            <Text>Phone number</Text>
-                            <Text>Email</Text>
+                            <Text fw={600}>Name</Text>
+                            <Text fw={600}>Company</Text>
+                            <Text fw={600}>Phone number</Text>
+                            <Text fw={600}>Email</Text>
                         </Stack>
                     </GridCol>
-                    <GridCol span={8}>
+                    <GridCol span={11}>
                         <Stack>
                             <Input placeholder="Input Name" />
                             <Input placeholder="Input Company" />
@@ -71,7 +71,9 @@ const CheakTimeLine: FC = () => {
             <Timeline.Item>
                 <Text fw={800}>Cheak Product</Text>
                 <Space h={'lg'} />
-                <CheakProduct />
+                <Box mx={'xl'}>
+                    <CheakProduct />
+                </Box>
             </Timeline.Item>
 
             <Timeline.Item>
@@ -88,9 +90,9 @@ const purchase: FC = () => {
     if (!(session?.user.role === 'user')) redirect('/');
 
     return (
-        <Stack mt={'lg'}>
+        <Stack pt={'xl'}>
             <AppPageSectionBox>
-                <AppPageHeader title={'purchase'} />
+                <AppPageHeader title={'Purchase'} />
             </AppPageSectionBox>
             <AppPageSectionBox p={'lg'}>
                 <CheakTimeLine />

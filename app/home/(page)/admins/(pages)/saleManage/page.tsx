@@ -22,9 +22,9 @@ const SaleManage: FC = () => {
     if (!(session?.user.role === 'admin')) redirect('/');
 
     return (
-        <Stack mt={'lg'}>
+        <Stack pt={'xl'}>
             <AppPageSectionBox>
-                <AppPageHeader title={'History'} />
+                <AppPageHeader title={'Sales management'} />
             </AppPageSectionBox>
             <AppPageSectionBox p={'lg'}>
                 <SaleListTable />

@@ -3,7 +3,7 @@
 import AppPageContainer from "@/ui/AppPageContainer/AppPageContainer";
 import AppPageHeader from "@/ui/AppPageHeader/AppPageHeader";
 import AppPageSectionBox from "@/ui/AppPageSectionBox/AppPageSectionBox";
-import { Autocomplete, Box, Button, Center, Grid, GridCol, Group, Image, Pagination, SimpleGrid, Space, Stack, Text } from "@mantine/core";
+import { Autocomplete, Box, Button, Center, Grid, GridCol, Group, Image, Pagination, ScrollArea, SimpleGrid, Space, Stack, Text } from "@mantine/core";
 import { FC, useState } from "react";
 import '@mantine/dates/styles.css';
 import '@mantine/charts/styles.css';
@@ -41,7 +41,7 @@ const Category: FC = () => {
     if (!(session?.user.role === 'user')) redirect('/');
 
     return (
-        <Stack mt={'lg'}>
+        <Stack pt={'xl'}>
             <AppPageSectionBox>
                 <AppPageHeader title={'Category'} />
             </AppPageSectionBox>
@@ -50,7 +50,7 @@ const Category: FC = () => {
                 <Stack mt={'lg'}>
                     <Group justify='flex-end'>
                         <Autocomplete
-                            leftSection={<IconSearch/>}
+                            leftSection={<IconSearch />}
                             placeholder="Search"
                             data={['1', '2', '3', '4']}
                         />
@@ -59,11 +59,16 @@ const Category: FC = () => {
                         <Text fw={600}>New products for you</Text>
                         <Text fw={600} c={'#79ADEB'}>{'See all >>'}</Text>
                     </Group>
-                    <Group>
-                        <ProductListBlog />
-                        <ProductListBlog />
-                        <ProductListBlog />
-                    </Group>
+                    <ScrollArea h={400} type="never" offsetScrollbars>
+                        <Group>
+                            <ProductListBlog />
+                            <ProductListBlog />
+                            <ProductListBlog />
+                            <ProductListBlog />
+                            <ProductListBlog />
+                            <ProductListBlog />
+                        </Group>
+                    </ScrollArea>
                     <Space h="md" />
                     <Group justify='space-between'>
                         <Text fw={600}>Purchase again</Text>

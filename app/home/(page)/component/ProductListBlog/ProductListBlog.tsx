@@ -34,25 +34,25 @@ export function ProductListBlog() {
             </Text>
 
             <Text fz="sm" c="dimmed" lineClamp={4}>
-            MS-503 is based upon Hybrid Silyl Modified Polyether Technology. 
-            It is suitable in wide range of industrial applications and it has excellent 
-            primerless adhesion to various types of substrates of dissimilar porosity, and 
-            surface textures.
+                MS-503 is based upon Hybrid Silyl Modified Polyether Technology.
+                It is suitable in wide range of industrial applications and it has excellent
+                primerless adhesion to various types of substrates of dissimilar porosity, and
+                surface textures.
             </Text>
 
             <Group justify='flex-end' className={classes.footer}>
                 <Group gap={8} mr={0}>
                     <ActionIcon className={classes.action}>
-                        <IconHeart style={{ width: rem(16), height: rem(16) }} color={theme.colors.red[6]} />
+                        <IconHeart style={{ width: rem(24), height: rem(24) }} color={theme.colors.red[6]} />
                     </ActionIcon>
                     <ActionIcon className={classes.action}>
                         <IconShoppingCart
-                            style={{ width: rem(16), height: rem(16) }}
+                            style={{ width: rem(24), height: rem(24) }}
                             color={theme.colors.yellow[7]}
                         />
                     </ActionIcon>
                     <ActionIcon className={classes.action}>
-                        <IconCreditCardPay style={{ width: rem(16), height: rem(16) }} color={theme.colors.blue[6]} />
+                        <IconCreditCardPay style={{ width: rem(24), height: rem(24) }} color={theme.colors.blue[6]} />
                     </ActionIcon>
                 </Group>
             </Group>
