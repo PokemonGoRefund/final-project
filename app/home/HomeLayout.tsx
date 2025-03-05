@@ -20,7 +20,9 @@ import {
     IconUserCode,
     IconCreditCard,
     IconCategory,
-    IconHeartHandshake
+    IconHeartHandshake,
+    IconLine,
+    IconBrandLine
 } from '@tabler/icons-react';
 // import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './HomeLayout.module.css';
@@ -44,6 +46,7 @@ const dataAdmin = [
     { link: '/home/admins/history', label: 'History', icon: IconHistory },
     { link: '/home/admins/userManage', label: 'User Management', icon: IconUsers },
     { link: '/home/admins/saleManage', label: 'Sales Management', icon: IconUserCode },
+    { link: '/home/admins/lineOA', label: 'Line OA', icon: IconBrandLine },
 ];
 
 const dataSale = [
