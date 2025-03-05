@@ -1,150 +1,174 @@
 "use client"
 
-import { Button, Container, LoadingOverlay, Paper, PasswordInput, Stack, TextInput, Title, } from '@mantine/core';
+import { Box, Button, Center, Container, Divider, Group, LoadingOverlay, Paper, PasswordInput, SimpleGrid, Stack, Text, Textarea, TextInput, Timeline, Title, } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import classes from './page.module.css';
 import { getSession, signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import AppPageSectionBox from '@/ui/AppPageSectionBox/AppPageSectionBox';
+import Link from 'next/link';
+import { IconMail } from '@tabler/icons-react';
+import { useForm } from '@mantine/form';
 // import useAppStore from "@/src/store/user.store";
+function Demo() {
+  return (
+    <Group justify='flex-start'>
+      <Timeline active={0} bulletSize={40} lineWidth={8} color="red" align='left'>
+        <Timeline.Item bullet={<IconMail size={24} />} title="กรอกแบบฟอร์มการสมัคร">
 
-function LoginPage() {
+        </Timeline.Item>
 
-    const [checking, setChecking] = useState(true);
+        <Timeline.Item bullet={<IconMail size={24} />} title="รออนุมัติ">
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+        </Timeline.Item>
 
-    const router = useRouter();
+        <Timeline.Item title="ระบบจะส่งผลสมัคร" bullet={<IconMail size={24} />} lineVariant="dashed">
 
-    // const initDb = useAppStore((state) => state.initDb);
+        </Timeline.Item>
 
-    // Check if user is already logged in
-    const { data: session } = useSession();
+      </Timeline>
+    </Group>
+  );
+}
 
-    // useEffect(() => {
-    //     if (session) {
-    //         if (session.user.role === 'admin') {
-    //             router.push('/home/admins/overview');
-    //             return;
-    //         }
-    //         if (session.user.role === 'user') {
-    //             router.push('/home/patients');
-    //             return;
-    //         }
-    //     }
-    //     setChecking(false);
-    // }, [checking]);
+function HorizontalTimeline() {
+  return (
+    <Box>
+      {/* Timeline Items in a Row */}
+      <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px' }}>
+        <TimelineItem icon={<IconMail size={24} />} title="กรอกแบบฟอร์มการสมัคร" time="" />
+        <Divider size="md" style={{ width: '50px' }} />
+        <TimelineItem icon={<IconMail size={24} />} title="รออนุมัติ" time="" />
+        <Divider size="md" style={{ width: '50px' }} />
+        <TimelineItem icon={<IconMail size={24} />} title="ระบบจะส่งผลสมัคร" time="" />
+      </Box>
+    </Box>
+  );
+}
 
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
+// Reusable Timeline Item Component
+function TimelineItem({ icon, title, time }: { icon: React.ReactNode; title: string; time: string }) {
+  return (
+    <Stack align="center" gap={4}>
+      <Center style={{ width: 40, height: 40, borderRadius: '50%', background: 'red', color: 'white' }}>
+        {icon}
+      </Center>
+      <Text size="sm" fw={600}>{title}</Text>
+      <Text size="xs" c="dimmed">{time}</Text>
+    </Stack>
+  );
+}
 
-        try {
-            const result = await signIn('credentials', {
-                redirect: false,
-                email,
-                password,
-            });
-            if (result?.error) {
-                alert("Invalid credentials");
-            } else {
-                const session = await getSession();
-                switch (session?.user?.role) {
-                    case "admin":
-                        // initDb('-');
-                        router.push('/home/admins');
-                        break;
-                    case "sale":
-                        // initDb('-');
-                        router.push('/home/sales');
-                        break;
-                    default:
-                        // initDb(session?.user?.hn!);
-                        router.push('/home/users');
-                        break;
-                }
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    // const handleSubmit = async (e: any) => {
-    //     e.preventDefault();
-
-    //     try {
-    //         const result = await signIn('credentials', {
-    //             redirect: false,
-    //             email,
-    //             password,
-    //         });
-    //         if (result?.error) {
-    //             alert("Invalid credentials");
-    //         } else {
-    //             const session = await getSession();
-    //             switch (session?.user?.role) {
-    //                 case "admin":
-    //                     initDb('-');
-    //                     router.push('/home/admins');
-    //                     break;
-    //                 default:
-    //                     initDb(session?.user?.hn!);
-    //                     router.push('/home/patients');
-    //                     break;
-    //             }
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-    return (
-        <Container size={800} className={classes.container}>
-            {/* <LoadingOverlay visible={checking}
+function SinginPage() {
+  const form = useForm({
+    initialValues: {
+      name: '',
+      lname:'',
+      phone: '',
+      email: '',
+      company: '',
+      message: '',
+    },
+    validate: {
+      name: (value: any) => value.trim().length < 2,
+      lname: (value: any) => value.trim().length < 2,
+      phone:(value: any) => value.trim().length < 2,
+      email: (value: any) => !/^\S+@\S+$/.test(value),
+      company: (value: any) => value.trim().length === 0,
+    },
+  });
+  return (
+    <Container size={800} className={classes.container}>
+      {/* <LoadingOverlay visible={checking}
                 zIndex={1000}
                 bg={'white'}
                 overlayProps={{ radius: 'sm', blur: 2 }}>
             </LoadingOverlay> */}
-            <AppPageSectionBox p={'xl'} w={'600px'}>
-                <Stack>
-                    <Title ta="center">
-                        XTRASEAL
-                    </Title>
-                    {/* <Text c="dimmed" size="sm" ta="center" mt={5}>
-          Do not have an account yet?{' '}
-          <Anchor size="sm" component="button">
-            Create account
-          </Anchor>
-        </Text> */}
-                    <form onSubmit={handleSubmit}>
-                        {/* <Paper withBorder shadow="md" p={30} mt={30} radius="md"> */}
-                        <Paper>
-                            {error && (
-                                <>
-                                    {error}
-                                </>
-                            )}
+      <AppPageSectionBox p={'xl'} w={'600px'}>
+        <Stack gap={'xl'}>
+          <Center>
+            <Text fz={'24px'} fw={800}>
+              3 ขั้นตอนในการสมัครลูกค้าองค์กร ร้านค้า
+            </Text>
+          </Center>
+          {/* <Demo /> */}
+          <HorizontalTimeline />
+          <Box>
+            <form onSubmit={form.onSubmit(() => { })}>
+              <Title
+                order={2}
+                size="h1"
+                style={{ fontFamily: 'Greycliff CF, var(--mantine-font-family)' }}
+                fw={900}
+                ta="center"
+              >
+                Get in touch
+              </Title>
 
-                            <TextInput onChange={(e) => setEmail(e.target.value)} type='text' label="Username"
-                                placeholder="Your username" required />
-                            <PasswordInput onChange={(e) => setPassword(e.target.value)} label="Password"
-                                placeholder="Your password" required mt="md" />
-                            {/* <Group justify="space-between" mt="lg">
-            <Checkbox label="Remember me" />
-            <Anchor component="button" size="sm">
-              Forgot password?
-            </Anchor>
-          </Group> */}
-                            <Button type='submit' fullWidth mt="xl" bg={'rgb(238,77,85)'}>
-                                Sign in
-                            </Button>
-                        </Paper>
-                    </form>
-                </Stack>
-            </AppPageSectionBox>
-        </Container>
-    );
+              <SimpleGrid cols={{ base: 1, sm: 2 }} mt="xl">
+                <TextInput
+                  label="Name"
+                  placeholder="Your name"
+                  name="name"
+                  variant="filled"
+                  {...form.getInputProps('name')}
+                />
+                <TextInput
+                  label="Last name"
+                  placeholder="Your Last name"
+                  name="lname"
+                  variant="filled"
+                  {...form.getInputProps('lname')}
+                />
+              </SimpleGrid>
+
+              <TextInput
+                label="Company"
+                placeholder="Company"
+                mt="md"
+                name="company"
+                variant="filled"
+                {...form.getInputProps('company')}
+              />
+              <SimpleGrid cols={{ base: 1, sm: 2 }} mt="xl">
+                <TextInput
+                  label="Phone"
+                  placeholder="Your phone"
+                  name='phone'
+                  variant="filled"
+                  {...form.getInputProps('phone')}
+                />
+                <TextInput
+                  label="Email"
+                  placeholder="Your email"
+                  name="email"
+                  variant="filled"
+                  {...form.getInputProps('email')}
+                />
+              </SimpleGrid>
+              <Textarea
+                mt="md"
+                label="Message"
+                placeholder="Your message"
+                maxRows={10}
+                minRows={5}
+                autosize
+                name="message"
+                variant="filled"
+                {...form.getInputProps('message')}
+              />
+
+              <Group justify="center" mt="xl">
+                <Button type="submit" size="md" bg={"red"}>
+                  Send message
+                </Button>
+              </Group>
+            </form>
+          </Box>
+        </Stack>
+      </AppPageSectionBox>
+    </Container>
+  );
 }
 
-export default LoginPage;
+export default SinginPage;

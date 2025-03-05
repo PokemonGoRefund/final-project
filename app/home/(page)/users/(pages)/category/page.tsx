@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import AppPageContainer from "@/ui/AppPageContainer/AppPageContainer";
 import AppPageHeader from "@/ui/AppPageHeader/AppPageHeader";
@@ -34,9 +34,35 @@ const PicSlide: FC = () => {
     return <Carousel withIndicators>{slides}</Carousel>;
 }
 
+const SearchProduct: FC = () => {
+    return (
+        <Group>
+            <Autocomplete
+                leftSection={<IconSearch />}
+                label={'อุตสาหกรรม'}
+                placeholder="ทุกหมวดหมู่"
+                data={['1', '2', '3', '4']}
+            />
+            <Autocomplete
+                leftSection={<IconSearch />}
+                label={'ประเภทการใช้งาน'}
+                placeholder="ทุกประเภท"
+                data={['1', '2', '3', '4']}
+            />
+            <Autocomplete
+                leftSection={<IconSearch />}
+                label={'ขนาดผลิตภัณฑ์'}
+                placeholder="ทุกผลิตภัณฑ์ทุกขนาด"
+                data={['1', '2', '3', '4']}
+            />
+        </Group>
+
+    )
+}
+
 const Category: FC = () => {
     const { data: session } = useSession();
-    console.log("test session:", session)
+    // console.log("test session:", session)
 
     if (!(session?.user.role === 'user')) redirect('/');
 
@@ -46,20 +72,21 @@ const Category: FC = () => {
                 <AppPageHeader title={'Category'} />
             </AppPageSectionBox>
             <AppPageSectionBox p={'lg'}>
-                <PicSlide />
+                {/* <PicSlide /> */}
+                <SearchProduct/>
                 <Stack mt={'lg'}>
-                    <Group justify='flex-end'>
+                    {/* <Group justify='flex-end'>
                         <Autocomplete
                             leftSection={<IconSearch />}
                             placeholder="Search"
                             data={['1', '2', '3', '4']}
                         />
-                    </Group>
+                    </Group> */}
                     <Group justify='space-between'>
-                        <Text fw={600}>New products for you</Text>
+                        <Text fw={600}>Product type</Text>
                         <Text fw={600} c={'#79ADEB'}>{'See all >>'}</Text>
                     </Group>
-                    <ScrollArea h={400} type="never" offsetScrollbars>
+                    {/* <ScrollArea h={400} type="never" offsetScrollbars>
                         <Group>
                             <ProductListBlog />
                             <ProductListBlog />
@@ -68,17 +95,119 @@ const Category: FC = () => {
                             <ProductListBlog />
                             <ProductListBlog />
                         </Group>
-                    </ScrollArea>
+                    </ScrollArea> */}
+                    <Center>
+                        <Carousel
+                            withIndicators
+                            w={1080}
+                            height={400}
+                            slideSize="33.333333%"
+                            slideGap="md"
+                            loop
+                            align="start"
+                            slidesToScroll={3}
+                        >
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                        </Carousel>
+                    </Center>
                     <Space h="md" />
                     <Group justify='space-between'>
-                        <Text fw={600}>Purchase again</Text>
+                        <Text fw={600}>Product type</Text>
                         <Text fw={600} c={'#79ADEB'}>{'See all >>'}</Text>
                     </Group>
-                    <Group>
+                    {/* <Group>
                         <ProductListBlog />
                         <ProductListBlog />
                         <ProductListBlog />
+                    </Group> */}
+                    <Center>
+                        <Carousel
+                            withIndicators
+                            w={1080}
+                            height={400}
+                            slideSize="33.333333%"
+                            slideGap="md"
+                            loop
+                            align="start"
+                            slidesToScroll={3}
+                        >
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                        </Carousel>
+                    </Center>
+                    <Group justify='space-between'>
+                        <Text fw={600}>Product type</Text>
+                        <Text fw={600} c={'#79ADEB'}>{'See all >>'}</Text>
                     </Group>
+                    {/* <Group>
+                        <ProductListBlog />
+                        <ProductListBlog />
+                        <ProductListBlog />
+                    </Group> */}
+                    <Center>
+                        <Carousel
+                            withIndicators
+                            w={1080}
+                            height={400}
+                            slideSize="33.333333%"
+                            slideGap="md"
+                            loop
+                            align="start"
+                            slidesToScroll={3}
+                        >
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                            <Carousel.Slide>
+                                <ProductListBlog />
+                            </Carousel.Slide>
+                        </Carousel>
+                    </Center>
                 </Stack>
             </AppPageSectionBox>
         </Stack>

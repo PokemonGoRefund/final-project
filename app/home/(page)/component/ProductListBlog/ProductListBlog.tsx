@@ -1,3 +1,5 @@
+'use client'
+
 import { IconBookmark, IconCreditCardPay, IconHeart, IconShare, IconShoppingCart } from '@tabler/icons-react';
 import {
     Card,
@@ -12,15 +14,24 @@ import {
     rem,
 } from '@mantine/core';
 import classes from './ProductListBlog.module.css';
+import { useRouter } from 'next/navigation';
 
 export function ProductListBlog() {
-    const linkProps = { href: '/', target: '_blank', rel: 'noopener noreferrer' };
+    const router = useRouter();
+
+    // const linkProps = { href: '/home/users/category', target: '_blank', rel: 'noopener noreferrer' };
+    // const linkProps = router.push('/home/users/category')
     const theme = useMantineTheme();
+
+    const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault(); // Prevent default anchor behavior
+        router.push('/home/users/pddetail');
+    };
 
     return (
         <Card withBorder radius="md" className={classes.card}>
             <Card.Section>
-                <a {...linkProps}>
+                <a onClick={handleClick}>
                     <Image src="/SN-503.jpg" height={180} width={180} />
                 </a>
             </Card.Section>
@@ -29,7 +40,7 @@ export function ProductListBlog() {
         outstanding
       </Badge> */}
 
-            <Text className={classes.title} fw={500} component="a" {...linkProps}>
+            <Text className={classes.title} fw={500} component="a" onClick={handleClick}>
                 MS-503 MS Polymer Adhesive / Sealant
             </Text>
 

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import AppPageContainer from "@/ui/AppPageContainer/AppPageContainer";
 import AppPageHeader from "@/ui/AppPageHeader/AppPageHeader";
@@ -12,7 +12,8 @@ import AppBoxLight from "@/ui/AppBoxLight/AppBoxLight";
 import { AreaChart } from "@mantine/charts";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import Category from "./(pages)/category/page";
+// import Category from "./(pages)/category/page";
+import HomeUsers from "./(pages)/homepage/page";
 
 const Admin: FC = () => {
     const { data: session } = useSession();
@@ -20,7 +21,7 @@ const Admin: FC = () => {
     if(!(session?.user.role === 'user')) redirect('/');
 
     // return redirect('/home/admins/component/overview');
-    return <Category/>
+    return <HomeUsers/>
 };
 
 export default Admin;

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import AppPageContainer from "@/ui/AppPageContainer/AppPageContainer";
 import AppPageHeader from "@/ui/AppPageHeader/AppPageHeader";
