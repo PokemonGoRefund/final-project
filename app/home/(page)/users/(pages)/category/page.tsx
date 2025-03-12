@@ -62,7 +62,7 @@ const SearchProduct: FC = () => {
 
 const Category: FC = () => {
     const { data: session } = useSession();
-    // console.log("test session:", session)
+    console.log("test session:", session)
 
     if (!(session?.user.role === 'user')) redirect('/');
 

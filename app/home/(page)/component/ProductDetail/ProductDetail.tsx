@@ -24,6 +24,7 @@ import classes from './ProductDetail.module.css';
 import { Carousel } from '@mantine/carousel';
 import { FC, useState } from 'react';
 import { ProductListBlog } from '../ProductListBlog/ProductListBlog';
+import axios from 'axios';
 
 const PerviewPic: FC = () => {
     return (
@@ -75,6 +76,25 @@ const TabForMore: FC = () => {
 
 export function ProductDetail() {
     const [quantity, setQuantity] = useState(1);
+
+    const handleBuy = async () => {
+        const productData = {
+            productName: "B2 Premium White Lithium Grease", // ชื่อสินค้า
+            quantity: quantity, // จำนวนที่เลือก
+            price: 495, // ราคาสินค้า
+        };
+
+        try {
+            const response = await axios.post('/api/noti/noti-sale', productData);
+            console.log("Success:", response.data);
+            alert("สั่งซื้อสำเร็จ!");
+        } catch (error) {
+            console.log("Error:", productData);
+            console.error("Error:", error);
+            alert("เกิดข้อผิดพลาดในการสั่งซื้อ");
+        }
+    };
+
     return (
         <Box>
             <Grid>
@@ -139,7 +159,7 @@ export function ProductDetail() {
                             <Button color={'red'} variant='outline'>
                                 <Text>ใส่ตะกร้า</Text>
                             </Button>
-                            <Button bg={'red'}>
+                            <Button bg={'red'} onClick={handleBuy}>
                                 <Text>ซื้อสินค้า</Text>
                             </Button>
                         </Group>
